@@ -10,8 +10,7 @@ import orderRouter from "./routes/orderRoute.js"
 const cors = require('cors');
 app.use(cors({
   origin: [
-    'https://food-delivery-tsmt.vercel.app', // your frontend Vercel URL
-    'https://food-delivery-seven-topaz.vercel.app' // your backend Vercel URL (optional)
+    'https://food-delivery-tsmt.vercel.app', // your frontend URL
   ],
   credentials: true // only if you use cookies/auth
 }));
