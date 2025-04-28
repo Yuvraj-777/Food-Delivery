@@ -6,9 +6,9 @@ import './Header.css';
 const Header = () => {
   const images = [
     // Use relative paths instead of absolute paths
-    '/src/assets/food_2.png',
-    '/src/assets/food_3.png',
-    '/src/assets/food_4.png',
+    '/assets/food_2.png',
+    '/assets/food_3.png',
+    '/assets/food_4.png',
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
