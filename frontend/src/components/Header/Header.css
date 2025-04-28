@@ -1,0 +1,213 @@
+.displayHeader {
+    margin: 30px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-container {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Left side - YouTube video styling */
+.video-section {
+    width: 49.5%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Subtle divider between sections */
+.subtle-divider {
+    width: 8px;  /* Approximately 0.2cm wide */
+    height: 90%;
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+}
+
+/* Right side - Image slider styling */
+.slider-section {
+    width: 49.5%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Slider indicators/dots */
+.slider-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.indicator.active {
+    background-color: #4CC9F0;
+}
+
+/* Content section styling */
+.header-contents {
+    width: 80%;
+    text-align: center;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-contents h2 {
+    font-weight: 500;
+    color: var(--light-text);
+    font-size: max(2.5vw, 20px);
+    margin: 0;
+    color: white;
+}
+
+.header-contents p {
+    color: var(--light-text-secondary);
+    font-size: max(1vw, 16px);
+    max-width: 700px;
+    margin: 0;
+    color: white;
+}
+
+.header-contents button {
+    border: none;
+    color: #747474;
+    font-weight: 500;
+    padding: 12px 30px;
+    background-color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #4CC9F0;
+    margin-top: 10px;
+}
+
+.header-contents button:hover {
+    transform: scale(1.05);
+    background-color: #4CC9F0;
+    color: white;
+}
+
+:root .buttonwl {
+    color: black;
+}
+
+.lightcolors .buttonwl {
+    color: #747474;
+}
+
+.lightcolors .header-contents h2 {
+    color: black;
+}
+
+.lightcolors .header-contents p {
+    color: black;
+}
+
+/* Dark mode adjustments */
+:root .subtle-divider {
+    background-color: rgba(255, 255, 255, 0.05);  /* Even more subtle in dark mode */
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .header-container {
+        height: 350px;
+    }
+    
+    .header-contents p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 750px) {
+    .header-container {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .video-section,
+    .slider-section {
+        width: 100%;
+        height: 250px;
+    }
+    
+    .subtle-divider {
+        width: 90%;
+        height: 8px;  /* Keep the 8px measurement for horizontal orientation */
+        top: auto;
+        left: 5%;
+        transform: none;
+    }
+    
+    .header-contents h2 {
+        font-size: 20px;
+    }
+    
+    .header-contents p {
+        font-size: 14px;
+        padding: 0 15px;
+    }
+    
+    .header-contents button {
+        padding: 10px 25px;
+        font-size: 14px;
+    }
+}
+.video-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .video-wrapper iframe {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 160%;
+    height: 120%;
+    pointer-events: none;
+  }
+  

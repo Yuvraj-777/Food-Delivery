@@ -1,0 +1,308 @@
+/* Navbar.css - Updated and optimized */
+
+.navbar {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.navbar-logo {
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.navbar-logo .logo {
+  width: 150px;
+  height: auto;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 1.25rem;
+  color: var(--menu-text-color);
+  font-size: 1.125rem;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar button {
+  background: transparent;
+  font-size: 0.9375rem;
+  color: var(--button-text-color);
+  border: 1px solid var(--accent-color);
+  padding: 0.625rem 1.875rem;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navbar button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.navbar .active {
+  position: relative;
+}
+
+.navbar .active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--active-border-color);
+}
+
+.navbar-menu a {
+  cursor: pointer;
+}
+
+.navbar-search-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.navbar-search-icon .dot {
+  position: absolute;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  top: -0.5rem;
+  right: -0.5rem;
+}
+
+.navbar-profile {
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-profile-dropdown {
+  position: absolute;
+  display: none;
+  right: 0;
+  z-index: 10;
+  min-width: 150px;
+  background-color: var(--dropdown-bg);
+  border-radius: 0.25rem;
+  border: 1px solid var(--accent-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0.75rem 0;
+  margin: 0;
+  color: var(--menu-text-color);
+}
+
+.navbar-profile:hover .nav-profile-dropdown {
+  display: block;
+}
+
+.nav-profile-dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-profile-dropdown li:hover {
+  background-color: var(--dropdown-hover-bg);
+  color: var(--accent-color);
+}
+
+.nav-profile-dropdown img {
+  width: 1.25rem;
+  height: 1.25rem;
+  filter: var(--logos-filter);
+}
+
+.nav-profile-dropdown hr {
+  margin: 0.5rem 0;
+  border: none;
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+#visual-toggle-button {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 1px solid var(--border-color);
+  border-radius: 0.3125rem;
+  cursor: pointer;
+}
+
+#visual-toggle {
+  appearance: none;
+  display: none;
+}
+
+.svgIcon-toggle {
+  width: 1.5625rem;
+}
+
+.moon-svg {
+  width: 0.8125rem;
+  position: absolute;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.sun-svg {
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.lightmode .sun-svg {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.lightmode .moon-svg {
+  opacity: 0;
+}
+
+.animate .moon-svg {
+  transform: rotate(360deg);
+}
+
+/* CSS Variables for theme management */
+:root {
+  --menu-text-color: #fff;
+  --button-text-color: #fff;
+  --accent-color: #4CC9F0;
+  --button-hover-bg: rgba(76, 201, 240, 0.1);
+  --active-border-color: #fff;
+  --dropdown-bg: #121212;
+  --dropdown-hover-bg: rgba(76, 201, 240, 0.1);
+  --border-color: #27272a;
+  --body-color: #121212;
+  --logos-filter: brightness(0) invert(1);
+}
+
+:root .basketlogo {
+  filter: invert(100%);
+}
+.lightcolors .basketlogo {
+  filter: none;
+}
+.lightcolors {
+  --menu-text-color: #49557e;
+  --button-text-color: #49557e;
+  --button-hover-bg: #fff4f2;
+  --active-border-color: #4CC9F0;
+  --dropdown-bg: #fff2ef;
+  --dropdown-hover-bg: rgba(76, 201, 240, 0.1);
+  --border-color: #ddd;
+  --body-color: #fff;
+  --logos-filter: none;
+}
+
+/* Filter adjustments for themes */
+.white-filter {
+  filter: var(--logos-filter);
+}
+
+/* Sign button styles */
+.signbutton {
+  color: var(--button-text-color);
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.lightcolors .signbutton:hover {
+  background-color: #4CC9F0;
+}
+
+.signbutton:hover {
+  color: #fff;
+  background-color: var(--accent-color);
+}
+
+/* Media Queries - Mobile First Approach */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .navbar-menu {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 0.75rem;
+    overflow-x: auto;
+  }
+  
+  .navbar-logo, .navbar-right {
+    flex: 1;
+  }
+  
+  .navbar-logo {
+    justify-content: flex-start;
+  }
+  
+  .navbar-right {
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  .navbar button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .nav-profile-dropdown {
+    right: -1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-menu {
+    gap: 1rem;
+    font-size: 0.9375rem;
+  }
+  
+  .navbar-logo .logo {
+    width: 120px;
+  }
+  
+  .navbar button {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  #visual-toggle-button {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* Hide menu on very small screens and show a hamburger instead */
+@media (max-width: 640px) {
+  .navbar-menu {
+    display: none;
+  }
+}

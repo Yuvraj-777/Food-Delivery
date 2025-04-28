@@ -1,0 +1,307 @@
+/* MenuCategories.css */
+.menu-categories {
+    width: 100%;
+    padding: 2.5rem 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Base colors - will be overridden by light/dark mode */
+  .menu-categories {
+    --primary-bg: #121212;
+    --primary-text: #f0f0f0;
+    --secondary-text: #a0a0a0;
+    --accent-color: #ff7e00;
+    --accent-glow: rgba(255, 126, 0, 0.4);
+    --divider-color: #333;
+    --card-bg: #1e1e1e;
+    --card-border: #333;
+    --hover-bg: rgba(255, 255, 255, 0.05);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Dark mode (default) */
+  :root .menu-categories {
+    --primary-bg: #121212;
+    --primary-text: #f0f0f0;
+    --secondary-text: #a0a0a0;
+    --accent-color: #ff7e00;
+    --accent-glow: rgba(255, 126, 0, 0.4);
+    --divider-color: #333;
+    --card-bg: #1e1e1e;
+    --card-border: #333;
+    --hover-bg: rgba(255, 255, 255, 0.05);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Light mode */
+  .lightcolors .menu-categories {
+    --primary-bg: #f7f7f7;
+    --primary-text: #222222;
+    --secondary-text: #555555;
+    --accent-color: #e65100;
+    --accent-glow: rgba(230, 81, 0, 0.2);
+    --divider-color: #dddddd;
+    --card-bg: #ffffff;
+    --card-border: #e0e0e0;
+    --hover-bg: rgba(0, 0, 0, 0.03);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-categories {
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+  }
+  
+  .menu-categories-header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+  
+  .menu-categories-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-text);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .menu-categories-title::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background: var(--accent-color);
+    bottom: -10px;
+    left: 25%;
+    border-radius: 2px;
+  }
+  
+  .menu-categories-subtitle {
+    color: var(--secondary-text);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    padding: 0.5rem;
+  }
+  
+  .category-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  
+  .category-cell:hover {
+    background-color: var(--hover-bg);
+    transform: translateY(-5px);
+  }
+  
+  .category-image-container {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .category-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .category-cell:hover .category-image-container img {
+    transform: scale(1.08);
+  }
+  
+  .category-highlight {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .category-active .category-highlight {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-glow);
+  }
+  
+  .category-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--secondary-text);
+    transition: color 0.3s ease;
+    text-align: center;
+    padding: 0.5rem;
+  }
+  
+  .category-active .category-label {
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+  
+  /* Category Detail Card */
+  .category-detail-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    margin: 2rem 0;
+    box-shadow: 0 8px 30px var(--shadow-color);
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .category-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
+  .category-detail-header h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .close-detail-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+  }
+  
+  .close-detail-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .category-detail-content {
+    display: flex;
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+  
+  .category-detail-image {
+    flex: 0 0 160px;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .category-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .category-detail-info {
+    flex: 1;
+  }
+  
+  .category-description {
+    color: var(--secondary-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .category-tags {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  
+  .category-tag {
+    background-color: var(--hover-bg);
+    color: var(--accent-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid var(--card-border);
+  }
+  
+  .menu-categories-divider {
+    height: 1px;
+    width: 100%;
+    background: var(--divider-color);
+    margin-top: 2rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .categories-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .category-detail-content {
+      flex-direction: column;
+    }
+    
+    .category-detail-image {
+      width: 100%;
+      height: 200px;
+      flex-basis: auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .menu-categories-title {
+      font-size: 1.6rem;
+    }
+    
+    .menu-categories-subtitle {
+      font-size: 0.95rem;
+    }
+    
+    .category-image-container {
+      width: 90px;
+      height: 90px;
+    }
+    
+    .category-tag {
+      font-size: 0.8rem;
+    }
+  }
