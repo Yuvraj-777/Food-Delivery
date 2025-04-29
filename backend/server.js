@@ -43,8 +43,6 @@ app.get("/", (req, res) => {
     res.send("API Working")
 })
 
-app.listen(port, () => {
-    console.log(`Server Started on port ${port}`)
-})
+export default app;
 
 // YOU CAN SAVE UR DATABASE IN THIS COMMENT IF U WANT --> 
