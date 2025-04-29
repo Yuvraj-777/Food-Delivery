@@ -7,41 +7,48 @@ import 'dotenv/config'
 import cartRouter from "./routes/cartRoute.js"
 import orderRouter from "./routes/orderRoute.js"
 
-const cors = require('cors');
-app.use(cors({
-  origin: [
-    'https://food-delivery-tsmt.vercel.app', // your frontend URL
-  ],
-  credentials: true // only if you use cookies/auth
-}));
-
-
 // app config
 const app = express()
-const port = 4000
+const port = process.env.PORT || 4000
 
 // middleware
 app.use(express.json())
-app.use(cors())
+
+// CORS configuration
+app.use(cors({
+  origin: [
+    'https://food-delivery-tsmt.vercel.app',    // your frontend URL
+    'http://localhost:5173',                     // local frontend development
+    'http://localhost:3000'                      // local frontend alternative port
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'token'],
+  exposedHeaders: ['token']
+}))
 
 // db connection
 connectDB();
 
 // api endpoints
-app.use("/api/food",foodRouter)
-app.use("/images",express.static('uploads'))
-app.use("/api/user",userRouter)
-app.use("/api/cart",cartRouter)
-app.use("/api/order",orderRouter)
+app.use("/api/food", foodRouter)
+app.use("/images", express.static('uploads'))
+app.use("/api/user", userRouter)
+app.use("/api/cart", cartRouter)
+app.use("/api/order", orderRouter)
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ success: false, message: "Something went wrong!" });
+});
 
-
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
     res.send("API Working")
 })
 
-app.listen(port,()=>{
-    console.log(`Server Started on http://localhost:${port}`)
+app.listen(port, () => {
+    console.log(`Server Started on port ${port}`)
 })
 
 // YOU CAN SAVE UR DATABASE IN THIS COMMENT IF U WANT --> 

@@ -5,10 +5,10 @@ import './Header.css';
 
 const Header = () => {
   const images = [
-    '/assets/food_2.png',
-    '/assets/food_3.png',
-    '/assets/food_4.png',
-  ];
+  '/assets/food_2.png',
+  '/assets/food_3.png',
+  '/assets/food_4.png',
+];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
