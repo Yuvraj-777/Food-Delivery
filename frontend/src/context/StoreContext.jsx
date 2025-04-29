@@ -27,14 +27,22 @@ const StoreContextProvider = (props) => {
             setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
         }
         if (token){
-            await axios.post(url+"/api/cart/add",{itemId},{headers:{token}})
+            try {
+                await axios.post(url+"/api/cart/add",{itemId},{headers:{token}})
+            } catch (error) {
+                console.error("Error adding to cart:", error);
+            }
         }
     }
 
     const removeFromCart = async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
         if (token) {
-            await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}})
+            try {
+                await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}})
+            } catch (error) {
+                console.error("Error removing from cart:", error);
+            }
         }
     }
 
@@ -70,7 +78,13 @@ const StoreContextProvider = (props) => {
 
     const fetchFoodList = async () => {
         try {
-            const response = await axios.get(url+"/api/food/list");
+            const response = await axios.get(url+"/api/food/list", {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                withCredentials: true
+            });
             if (response.data.success) {
                 setFoodList(response.data.data);
             }
@@ -83,7 +97,14 @@ const StoreContextProvider = (props) => {
 
     const loadCartData = async (token) => {
         try {
-            const response = await axios.post(url+"/api/cart/get",{},{headers:{token}});
+            const response = await axios.post(url+"/api/cart/get", {}, {
+                headers: {
+                    token,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                withCredentials: true
+            });
             if (response.data.success) {
                 setCartItems(response.data.cartData);
             }
