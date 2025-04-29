@@ -5,8 +5,8 @@ import fs from 'fs'
 // add food item
 
 const addFood = async (req,res) => {
-    // let image_filename = `${req.file.filename}`;
-    let image_filename = ""; // No file upload on Vercel
+    // Use a default placeholder image for all food items
+    let image_filename = "https://source.unsplash.com/400x300/?food";
 
     const food = new foodModel({
         name:req.body.name,
