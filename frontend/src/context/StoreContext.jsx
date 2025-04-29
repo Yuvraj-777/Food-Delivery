@@ -6,10 +6,18 @@ export const StoreContext = createContext(null)
 const StoreContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState({});
+    const [isPromoApplied, setIsPromoApplied] = useState(false);
+    const [activePromo, setActivePromo] = useState(null);
     const url = import.meta.env.VITE_API_URL;
     const [token,setToken] = useState("")
     // const [setFoodList] = useState({})
 
+    // Valid promo codes and their discount percentages
+    const validPromoCodes = {
+        'WELCOME10': 10,
+        'SAVE20': 20,
+        'SPECIAL30': 30
+    };
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
@@ -41,6 +49,24 @@ const StoreContextProvider = (props) => {
         }
         return totalAmount;
     }
+
+    const applyPromoCode = (code) => {
+        if (validPromoCodes[code]) {
+            setIsPromoApplied(true);
+            setActivePromo(code);
+            return true;
+        }
+        return false;
+    };
+
+    const getDiscountedAmount = () => {
+        const total = getTotalCartAmount();
+        if (!isPromoApplied || !activePromo) return total;
+        
+        const discountPercentage = validPromoCodes[activePromo];
+        const discount = (total * discountPercentage) / 100;
+        return total - discount;
+    };
 
     const fetchFoodList = async () => {
         const response = await axios.get(url+"/api/food/list");
@@ -74,7 +100,11 @@ const StoreContextProvider = (props) => {
         getTotalCartAmount,
         url,
         token,
-        setToken
+        setToken,
+        applyPromoCode,
+        isPromoApplied,
+        getDiscountedAmount,
+        activePromo
     }
 
     return (
