@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import './Header.css';
+import { assets } from '../../assets/assets';
 
 const Header = () => {
   const images = [
-  '/assets/food_2.png',
-  '/assets/food_3.png',
-  '/assets/food_4.png',
-];
+    assets.food_2,
+    assets.food_3,
+    assets.food_4,
+  ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 

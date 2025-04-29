@@ -15,24 +15,8 @@ const port = process.env.PORT || 4000
 app.use(express.json())
 
 // CORS configuration
-const allowedOrigins = [
-  'http://localhost:5173',                     // local frontend development
-  'http://localhost:3000',                     // local frontend alternative port
-  'https://food-delivery-tsmt.vercel.app',    // production frontend URL
-  'https://food-delivery-seven-topaz.vercel.app' // your Vercel deployment URL
-];
-
 app.use(cors({
-  origin: function(origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
+  origin: ['https://food-delivery-tsmt.vercel.app', 'http://localhost:5173'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'token'],

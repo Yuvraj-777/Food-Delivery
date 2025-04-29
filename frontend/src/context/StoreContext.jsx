@@ -8,9 +8,9 @@ const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [isPromoApplied, setIsPromoApplied] = useState(false);
     const [activePromo, setActivePromo] = useState(null);
+    const [foodList, setFoodList] = useState(food_list);
     const url = import.meta.env.VITE_API_URL;
     const [token,setToken] = useState("")
-    // const [setFoodList] = useState({})
 
     // Valid promo codes and their discount percentages
     const validPromoCodes = {
@@ -43,7 +43,7 @@ const StoreContextProvider = (props) => {
         for (const item in cartItems) 
         {
             if (cartItems[item] > 0) {
-                let itemInfo = food_list.find((product) => product._id === item)
+                let itemInfo = foodList.find((product) => product._id === item)
                 totalAmount += itemInfo.price * cartItems[item];
             }
         }
@@ -69,15 +69,28 @@ const StoreContextProvider = (props) => {
     };
 
     const fetchFoodList = async () => {
-        const response = await axios.get(url+"/api/food/list");
-        setFoodList(response.data.data)
+        try {
+            const response = await axios.get(url+"/api/food/list");
+            if (response.data.success) {
+                setFoodList(response.data.data);
+            }
+        } catch (error) {
+            console.error("Error fetching food list:", error);
+            // Fallback to local food list if API fails
+            setFoodList(food_list);
+        }
     }
 
     const loadCartData = async (token) => {
-        const response = await axios.post(url+"/api/cart/get",{},{headers:{token}});
-        setCartItems(response.data.cartData);
+        try {
+            const response = await axios.post(url+"/api/cart/get",{},{headers:{token}});
+            if (response.data.success) {
+                setCartItems(response.data.cartData);
+            }
+        } catch (error) {
+            console.error("Error loading cart data:", error);
+        }
     }
-
 
     useEffect(()=>{
         async function loadData() {
@@ -90,9 +103,8 @@ const StoreContextProvider = (props) => {
         loadData();
     },[])
 
-
     const contextValue = {
-        food_list,
+        food_list: foodList,
         cartItems,
         setCartItems,
         addToCart,
